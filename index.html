@@ -1,1 +1,213 @@
-<!doctype html><html lang="et"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Väikelaevajuhi õppeprogramm</title><style>body{font:18px/1.5 system-ui,sans-serif;background:#0b3954;color:#fff;display:grid;place-items:center;min-height:100vh;margin:0;padding:16px;text-align:center}</style></head><body><main><h1>⚓ Väikelaevajuhi õppeprogramm</h1><p>Programm valmib täna õhtul. Palun proovi hiljem uuesti.</p></main></body></html>
+<!DOCTYPE html>
+<html lang="et">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%277%27 fill=%27%23123a5c%27/%3E%3Ctext x=%2716%27 y=%2723%27 font-size=%2720%27 text-anchor=%27middle%27 fill=%27white%27%3E%E2%9A%93%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#123a5c">
+<title>Väikelaevajuhi õppeprogramm</title>
+<style>
+:root{--meri:#123a5c;--meri2:#1f5f8b;--vaht:#eaf3f9;--oranz:#e07b24;--tekst:#14283a;--hall:#5b6b78;--pun:#b3261e}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:17px;line-height:1.5;color:var(--tekst);
+ background:linear-gradient(180deg,#0e2f4b 0%,#1f5f8b 62%,#3c86b4 100%);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 16px 120px;position:relative;overflow-x:hidden}
+.lained{position:fixed;left:0;right:0;bottom:0;height:120px;pointer-events:none;z-index:0}
+.kaart{position:relative;z-index:1;width:100%;max-width:420px;background:#fff;border-radius:18px;padding:28px 24px 24px;box-shadow:0 18px 40px rgba(5,25,45,.35)}
+.ankur{width:56px;height:56px;border-radius:50%;background:var(--vaht);display:flex;align-items:center;justify-content:center;margin:0 0 14px}
+h1{font-size:24px;line-height:1.25;margin:0 0 8px;color:var(--meri)}
+p{margin:0 0 18px;color:var(--hall);font-size:17px}
+label{display:block;font-weight:600;font-size:16px;margin:0 0 6px;color:var(--meri)}
+input{width:100%;font-size:18px;padding:13px 14px;border:2px solid #c3d3df;border-radius:12px;outline:none;font-family:inherit;color:var(--tekst);background:#fbfdff}
+input:focus{border-color:var(--meri2);box-shadow:0 0 0 3px rgba(31,95,139,.18)}
+button{margin-top:14px;width:100%;font-size:18px;font-weight:700;padding:13px 16px;border:0;border-radius:12px;background:var(--oranz);color:#fff;cursor:pointer;font-family:inherit}
+button:hover{filter:brightness(1.05)}button:disabled{opacity:.6;cursor:default}
+.teade{margin-top:14px;padding:12px 14px;border-radius:12px;font-size:16px;display:none}
+.teade.viga{display:block;background:#fdecea;color:var(--pun);border-left:5px solid var(--pun)}
+.teade.info{display:block;background:var(--vaht);color:var(--meri);border-left:5px solid var(--meri2)}
+.teade a{color:inherit;font-weight:700}
+.riba{height:8px;border-radius:4px;background:#e1ebf2;overflow:hidden;margin-top:12px}
+.riba i{display:block;height:100%;width:0;background:var(--meri2);transition:width .2s}
+.jalus{position:relative;z-index:1;margin-top:18px;color:#dbe9f4;font-size:16px;text-align:center}
+.peidus{display:none}
+</style>
+</head>
+<body>
+<svg class="lained" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+<path d="M0 60 C 240 20 480 100 720 60 S 1200 20 1440 60 V120 H0Z" fill="rgba(255,255,255,.10)"/>
+<path d="M0 85 C 260 55 520 115 780 85 S 1240 55 1440 85 V120 H0Z" fill="rgba(255,255,255,.16)"/>
+</svg>
+<main class="kaart">
+ <div class="ankur" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#123a5c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.2"/><path d="M12 7.2V21M8 11h8M4.5 14.5c0 3.6 3.4 6.5 7.5 6.5s7.5-2.9 7.5-6.5M4.5 14.5l-1.6 1.6M4.5 14.5l1.6 1.6M19.5 14.5l-1.6 1.6M19.5 14.5l1.6 1.6"/></svg></div>
+ <h1>Väikelaevajuhi õppeprogramm</h1>
+ <p>Programm on kursusel osalejatele – sisene e&#8209;mailiga, mille kursusele registreerudes andsid.</p>
+ <form id="vorm" class="peidus" autocomplete="on" novalidate>
+  <label for="email">E-mail</label>
+  <input id="email" name="email" type="email" inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false" placeholder="nimi@näide.ee" required>
+  <button id="nupp" type="submit">Sisene</button>
+ </form>
+ <div id="teade" class="teade" role="status" aria-live="polite"></div>
+ <div id="riba" class="riba peidus"><i></i></div>
+</main>
+<div class="jalus">⚓ Ainult kursuse õppijatele</div>
+<script>
+(function () {
+  'use strict';
+  var KONTAKT = 'ivar@kontamo.ee';
+  var LS = 'vlj-veeb-kek';
+  var $ = function (id) { return document.getElementById(id); };
+  var subtle = window.crypto && window.crypto.subtle;
+  var enc = new TextEncoder();
+  function lsGet() { try { return localStorage.getItem(LS); } catch (e) { return null; } }
+  function lsSet(v) { try { localStorage.setItem(LS, v); } catch (e) {} }
+  function lsDel() { try { localStorage.removeItem(LS); } catch (e) {} }
+  function b64d(s) { var b = atob(s), u = new Uint8Array(b.length); for (var i = 0; i < b.length; i++) u[i] = b.charCodeAt(i); return u; }
+  function b64e(u) { var s = ''; u = new Uint8Array(u); for (var i = 0; i < u.length; i++) s += String.fromCharCode(u[i]); return btoa(s); }
+  function teade(t, klass, html) { var el = $('teade'); el.className = 'teade ' + (klass || ''); if (html) el.innerHTML = t; else el.textContent = t; }
+  function naitaVormi() { $('vorm').classList.remove('peidus'); $('riba').classList.add('peidus'); $('nupp').disabled = false; $('nupp').textContent = 'Sisene'; }
+
+  function aesKey(raw) { return subtle.importKey('raw', raw, 'AES-GCM', false, ['decrypt']); }
+  function dekr(key, buf) { var u = new Uint8Array(buf); return subtle.decrypt({ name: 'AES-GCM', iv: u.subarray(0, 12) }, key, u.subarray(12)); }
+
+  var cfgP = null;
+  function cfg() { if (!cfgP) cfgP = fetch('v.json', { cache: 'no-cache' }).then(function (r) { if (!r.ok) throw new Error('v.json ' + r.status); return r.json(); }); return cfgP; }
+
+  // KEK (e-mailist tuletatud võti) -> sisuvõti; null kui ükski kirje ei sobi
+  function avaSisuvoti(kekRaw, c) {
+    return aesKey(kekRaw).then(function (kek) {
+      var i = 0;
+      function proovi() {
+        if (i >= c.votmed.length) return null;
+        return dekr(kek, b64d(c.votmed[i++])).then(function (raw) { return raw; }, proovi);
+      }
+      return proovi();
+    });
+  }
+  function tuletaKek(email, c) {
+    return subtle.importKey('raw', enc.encode(email), 'PBKDF2', false, ['deriveBits']).then(function (k) {
+      return subtle.deriveBits({ name: 'PBKDF2', hash: 'SHA-256', salt: b64d(c.sool), iterations: c.iter }, k, 256);
+    });
+  }
+
+  function lae(sisuRaw, c) {
+    $('vorm').classList.add('peidus');
+    $('riba').classList.remove('peidus');
+    teade('Avan programmi…', 'info');
+    var failid = [c.kood].concat(c.pakid), valmis = 0;
+    var riba = $('riba').firstChild;
+    return aesKey(sisuRaw).then(function (key) {
+      return Promise.all(failid.map(function (f) {
+        return fetch(f).then(function (r) { if (!r.ok) throw new Error(f + ' ' + r.status); return r.arrayBuffer(); })
+          .then(function (b) { valmis++; riba.style.width = Math.round(100 * valmis / failid.length) + '%'; return b; });
+      })).then(function (bufs) {
+        return Promise.all(bufs.map(function (b) { return dekr(key, b); }));
+      });
+    }).then(function (osad) {
+      var p = JSON.parse(new TextDecoder().decode(osad[0]));
+      var M = {};
+      Object.keys(p.img).forEach(function (rel) {
+        var x = p.img[rel];
+        M[rel] = URL.createObjectURL(new Blob([new Uint8Array(osad[1 + x[0]], x[1], x[2])], { type: x[3] }));
+      });
+      var vot = Object.keys(M).sort(function (a, b) { return b.length - a.length; });
+      var re = vot.length ? new RegExp(vot.map(function (k) { return k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }).join('|'), 'g') : null;
+      var rw = function (s) { return re ? s.replace(re, function (k) { return M[k]; }) : s; };
+      var html = rw(p.html).replace(/@@JS:([^@]+)@@/g, function (m, rel) {
+        return URL.createObjectURL(new Blob([rw(p.js[rel])], { type: 'text/javascript' }));
+      });
+      var konks = '<script>(' + PILDIKONKS.toString() + ')(' + JSON.stringify(M) + ');<\/script>';
+      var nupp = '<script>(' + VALJANUPP.toString() + ')(' + JSON.stringify(LS) + ');<\/script>';
+      html = /<head[^>]*>/i.test(html) ? html.replace(/<head[^>]*>/i, function (h) { return h + konks; }) : konks + html;
+      html = /<\/body>/i.test(html) ? html.replace(/<\/body>/i, nupp + '</body>') : html + nupp;
+      document.open();
+      document.write(html);
+      document.close();
+    });
+  }
+
+  // Programmi lehes: dünaamiliselt lisatud pildirajad -> blob-URL
+  function PILDIKONKS(M) {
+    var v = Object.keys(M).sort(function (a, b) { return b.length - a.length; });
+    if (!v.length) return;
+    var re = new RegExp(v.map(function (k) { return k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }).join('|'), 'g');
+    function rw(s) { return (typeof s === 'string' && s.length > 4) ? s.replace(re, function (k) { return M[k]; }) : s; }
+    function fx(u) { if (typeof u !== 'string') return u; var p = u.replace(/^\.\//, ''); if (M[p]) return M[p]; try { p = decodeURI(p); } catch (e) {} return M[p] || u; }
+    function seadja(proto, prop, f) {
+      var d = proto && Object.getOwnPropertyDescriptor(proto, prop); if (!d || !d.set) return;
+      Object.defineProperty(proto, prop, { configurable: true, enumerable: d.enumerable, get: d.get, set: function (x) { d.set.call(this, f(x)); } });
+    }
+    seadja(Element.prototype, 'innerHTML', rw);
+    seadja(Element.prototype, 'outerHTML', rw);
+    if (window.ShadowRoot) seadja(ShadowRoot.prototype, 'innerHTML', rw);
+    seadja(HTMLImageElement.prototype, 'src', fx);
+    seadja(HTMLSourceElement.prototype, 'src', fx);
+    var iah = Element.prototype.insertAdjacentHTML;
+    Element.prototype.insertAdjacentHTML = function (p, h) { return iah.call(this, p, rw(h)); };
+    var sa = Element.prototype.setAttribute;
+    Element.prototype.setAttribute = function (n, x) { if (n === 'src' || n === 'href' || n === 'poster' || n === 'xlink:href') x = fx(x); return sa.call(this, n, x); };
+    var ccf = Range.prototype.createContextualFragment;
+    Range.prototype.createContextualFragment = function (h) { return ccf.call(this, rw(h)); };
+  }
+
+  // Programmi lehes: nupp „Logi välja"
+  function VALJANUPP(LS) {
+    function tee() {
+      var b = document.createElement('button');
+      b.type = 'button'; b.id = 'vlj-logi-valja'; b.textContent = 'Logi välja';
+      b.setAttribute('style', 'font:600 14px/1.2 system-ui,Arial,sans-serif;padding:7px 12px;border-radius:16px;border:1px solid rgba(255,255,255,.6);background:rgba(255,255,255,.12);color:#fff;cursor:pointer;margin:0 0 0 auto;white-space:nowrap');
+      b.onclick = function () { try { localStorage.removeItem(LS); } catch (e) {} location.replace(location.pathname); };
+      var h = document.querySelector('header');
+      if (h) h.appendChild(b);
+      else { b.style.cssText += ';position:fixed;top:8px;right:8px;z-index:9999;background:#123a5c'; document.body.appendChild(b); }
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', tee); else tee();
+  }
+
+  function sisene(e) {
+    e.preventDefault();
+    var email = $('email').value.trim().toLowerCase();
+    if (!email || email.indexOf('@') < 1) { teade('Sisesta oma e-mail.', 'viga'); $('email').focus(); return; }
+    $('nupp').disabled = true; $('nupp').textContent = 'Kontrollin…'; teade('', '');
+    cfg().then(function (c) {
+      return tuletaKek(email, c).then(function (kek) {
+        return avaSisuvoti(kek, c).then(function (sisu) {
+          if (!sisu) {
+            teade('Sellel e-mailil ligipääsu ei ole. Ligipääsu saamiseks kirjuta Ivarile: <a href="mailto:' + KONTAKT + '">' + KONTAKT + '</a>.', 'viga', true);
+            $('nupp').disabled = false; $('nupp').textContent = 'Sisene';
+            return;
+          }
+          lsSet(b64e(kek));
+          return lae(sisu, c);
+        });
+      });
+    }).catch(function (err) {
+      console.warn(err);
+      teade('Programmi avamine ebaõnnestus. Kontrolli internetiühendust ja proovi uuesti.', 'viga');
+      naitaVormi();
+    });
+  }
+
+  function start() {
+    if (!subtle || !window.TextEncoder) { teade('See brauser on liiga vana. Ava leht Chrome\'is, Safaris, Edge\'is või Firefoxis.', 'viga'); return; }
+    $('vorm').addEventListener('submit', sisene);
+    var salv = lsGet();
+    if (!salv) { naitaVormi(); return; }
+    $('vorm').classList.add('peidus');
+    teade('Avan programmi…', 'info');
+    cfg().then(function (c) {
+      return avaSisuvoti(b64d(salv), c).then(function (sisu) {
+        if (!sisu) { lsDel(); naitaVormi(); teade('Palun logi uuesti sisse.', 'info'); return; }
+        return lae(sisu, c);
+      });
+    }).catch(function (err) {
+      console.warn(err);
+      naitaVormi();
+      teade('Programmi avamine ebaõnnestus. Kontrolli internetiühendust ja proovi uuesti.', 'viga');
+    });
+  }
+  start();
+})();
+</script>
+</body>
+</html>
