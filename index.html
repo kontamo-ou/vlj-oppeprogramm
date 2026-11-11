@@ -155,7 +155,7 @@ button:hover{filter:brightness(1.05)}button:disabled{opacity:.6;cursor:default}
     function tee() {
       var b = document.createElement('button');
       b.type = 'button'; b.id = 'vlj-logi-valja'; b.textContent = 'Logi välja';
-      b.setAttribute('style', 'font:600 14px/1.2 system-ui,Arial,sans-serif;padding:7px 12px;border-radius:16px;border:1px solid rgba(255,255,255,.6);background:rgba(255,255,255,.12);color:#fff;cursor:pointer;margin:0 0 0 auto;white-space:nowrap');
+      b.setAttribute('style', 'font:600 16px/1.2 system-ui,Arial,sans-serif;min-height:44px;padding:8px 14px;border-radius:22px;border:1px solid rgba(255,255,255,.6);background:rgba(255,255,255,.12);color:#fff;cursor:pointer;margin:0 0 0 auto;white-space:nowrap');
       b.onclick = function () { try { localStorage.removeItem(LS); } catch (e) {} location.replace(location.pathname); };
       var h = document.querySelector('header');
       if (h) h.appendChild(b);
