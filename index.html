@@ -71,7 +71,7 @@ button:hover{filter:brightness(1.05)}button:disabled{opacity:.6;cursor:default}
   function dekr(key, buf) { var u = new Uint8Array(buf); return subtle.decrypt({ name: 'AES-GCM', iv: u.subarray(0, 12) }, key, u.subarray(12)); }
 
   var cfgP = null;
-  function cfg() { if (!cfgP) cfgP = fetch('v.json', { cache: 'no-cache' }).then(function (r) { if (!r.ok) throw new Error('v.json ' + r.status); return r.json(); }); return cfgP; }
+  function cfg() { if (!cfgP) cfgP = fetch('v.json?t=' + Date.now(), { cache: 'no-store' }).then(function (r) { if (!r.ok) throw new Error('v.json ' + r.status); return r.json(); }); return cfgP; }
 
   // KEK (e-mailist tuletatud võti) -> sisuvõti; null kui ükski kirje ei sobi
   function avaSisuvoti(kekRaw, c) {
@@ -118,6 +118,7 @@ button:hover{filter:brightness(1.05)}button:disabled{opacity:.6;cursor:default}
       });
       var konks = '<script>(' + PILDIKONKS.toString() + ')(' + JSON.stringify(M) + ');<\/script>';
       var nupp = '<script>(' + VALJANUPP.toString() + ')(' + JSON.stringify(LS) + ');<\/script>';
+      nupp += '<script>(' + UUENDUSVALVE.toString() + ')(' + JSON.stringify(c.kood) + ');<\/script>';
       html = /<head[^>]*>/i.test(html) ? html.replace(/<head[^>]*>/i, function (h) { return h + konks; }) : konks + html;
       html = /<\/body>/i.test(html) ? html.replace(/<\/body>/i, nupp + '</body>') : html + nupp;
       document.open();
@@ -148,6 +149,33 @@ button:hover{filter:brightness(1.05)}button:disabled{opacity:.6;cursor:default}
     Element.prototype.setAttribute = function (n, x) { if (n === 'src' || n === 'href' || n === 'poster' || n === 'xlink:href') x = fx(x); return sa.call(this, n, x); };
     var ccf = Range.prototype.createContextualFragment;
     Range.prototype.createContextualFragment = function (h) { return ccf.call(this, rw(h)); };
+  }
+
+  // Programmi lehes: uuenduse valve (11.11). Kontrollib iga 3 min ja lehele naastes, kas v.json-is on uus versioon.
+  // Uus versioon laetakse JÄRGMISEL LEHEVAHETUSEL (hashchange) – pooleli vastust ei katkestata. Edenemine on localStorage-is.
+  function UUENDUSVALVE(kood) {
+    var ootel = false;
+    function riba() {
+      if (document.getElementById('vlj-uuendus')) return;
+      var d = document.createElement('div'); d.id = 'vlj-uuendus';
+      d.setAttribute('style', 'position:fixed;left:8px;right:8px;bottom:8px;z-index:9999;background:#123a5c;color:#fff;font:16px/1.35 system-ui,Arial,sans-serif;padding:10px 12px;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,.3);display:flex;gap:10px;align-items:center;flex-wrap:wrap');
+      var t = document.createElement('span'); t.setAttribute('style', 'flex:1;min-width:180px');
+      t.textContent = '🔄 Programmi uuendus on olemas. See laeb ise järgmisel lehevahetusel – Sinu edenemine jääb alles.';
+      var b = document.createElement('button'); b.type = 'button'; b.textContent = 'Uuenda kohe';
+      b.setAttribute('style', 'font:600 16px system-ui,Arial,sans-serif;min-height:44px;padding:8px 14px;border-radius:22px;border:0;background:#f5b041;color:#123a5c;cursor:pointer');
+      b.onclick = function () { location.reload(); };
+      d.appendChild(t); d.appendChild(b); document.body.appendChild(d);
+    }
+    function kontrolli() {
+      if (ootel || navigator.onLine === false) return;
+      fetch('v.json?t=' + Date.now(), { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (c) {
+        if (c && c.kood && c.kood !== kood) { ootel = true; riba(); }
+      }).catch(function () {});
+    }
+    window.addEventListener('hashchange', function () { if (ootel) location.reload(); });
+    document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'visible') kontrolli(); });
+    setInterval(kontrolli, 180000);
+    setTimeout(kontrolli, 20000);
   }
 
   // Programmi lehes: nupp „Logi välja"
