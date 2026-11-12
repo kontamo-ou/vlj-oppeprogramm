@@ -152,7 +152,8 @@ button:hover{filter:brightness(1.05)}button:disabled{opacity:.6;cursor:default}
   }
 
   // Programmi lehes: uuenduse valve (11.11). Kontrollib iga 3 min ja lehele naastes, kas v.json-is on uus versioon.
-  // Uus versioon laetakse JÄRGMISEL LEHEVAHETUSEL (hashchange) – pooleli vastust ei katkestata. Edenemine on localStorage-is.
+  // 12.11: sundlaadimist EI tehta – näidatakse väike teade „Uuendus saadaval – laadi uuesti". Edenemine ja täpne koht on localStorage-is,
+  // pärast uuesti laadimist jätkab kasutaja samast kohast (aadressi #-osa jääb alles).
   function UUENDUSVALVE(kood) {
     var ootel = false;
     function riba() {
@@ -160,11 +161,14 @@ button:hover{filter:brightness(1.05)}button:disabled{opacity:.6;cursor:default}
       var d = document.createElement('div'); d.id = 'vlj-uuendus';
       d.setAttribute('style', 'position:fixed;left:8px;right:8px;bottom:8px;z-index:9999;background:#123a5c;color:#fff;font:16px/1.35 system-ui,Arial,sans-serif;padding:10px 12px;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,.3);display:flex;gap:10px;align-items:center;flex-wrap:wrap');
       var t = document.createElement('span'); t.setAttribute('style', 'flex:1;min-width:180px');
-      t.textContent = '🔄 Programmi uuendus on olemas. See laeb ise järgmisel lehevahetusel – Sinu edenemine jääb alles.';
-      var b = document.createElement('button'); b.type = 'button'; b.textContent = 'Uuenda kohe';
+      t.textContent = '🔄 Uuendus saadaval – laadi uuesti. Sinu edenemine ja koht jäävad alles.';
+      var b = document.createElement('button'); b.type = 'button'; b.textContent = 'Laadi uuesti';
       b.setAttribute('style', 'font:600 16px system-ui,Arial,sans-serif;min-height:44px;padding:8px 14px;border-radius:22px;border:0;background:#f5b041;color:#123a5c;cursor:pointer');
       b.onclick = function () { location.reload(); };
-      d.appendChild(t); d.appendChild(b); document.body.appendChild(d);
+      var x = document.createElement('button'); x.type = 'button'; x.textContent = 'Hiljem'; x.setAttribute('aria-label', 'Peida teade');
+      x.setAttribute('style', 'font:600 16px system-ui,Arial,sans-serif;min-height:44px;padding:8px 14px;border-radius:22px;border:1px solid rgba(255,255,255,.6);background:transparent;color:#fff;cursor:pointer');
+      x.onclick = function () { d.remove(); };
+      d.appendChild(t); d.appendChild(b); d.appendChild(x); document.body.appendChild(d);
     }
     function kontrolli() {
       if (ootel || navigator.onLine === false) return;
@@ -172,7 +176,6 @@ button:hover{filter:brightness(1.05)}button:disabled{opacity:.6;cursor:default}
         if (c && c.kood && c.kood !== kood) { ootel = true; riba(); }
       }).catch(function () {});
     }
-    window.addEventListener('hashchange', function () { if (ootel) location.reload(); });
     document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'visible') kontrolli(); });
     setInterval(kontrolli, 180000);
     setTimeout(kontrolli, 20000);
